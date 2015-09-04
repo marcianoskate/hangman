@@ -47,11 +47,6 @@ public class ClientPlaying extends HangmanClientState {
     @Override
     public void guess(String input) {
 
-        if (input == null) {
-            System.out.println("try again.");
-            return;
-        }
-
         for (char c : input.toCharArray()) {
             if (!Character.isLetter(c)) {
                 System.out.println("No special characters, try again.");
@@ -59,7 +54,6 @@ public class ClientPlaying extends HangmanClientState {
             }
         }
 
-        System.out.println("\tguessed: " + input);
         hangman.guess(input);
     }
 
@@ -69,6 +63,7 @@ public class ClientPlaying extends HangmanClientState {
         label.append("\n\n=========\n");
         label.append("guess the word: " + hangman.getFormattedSecretWord()).append("\n");
         label.append("so far you've guessed: " + hangman.getUsedLetters()).append("\n");
+        label.append("You have ").append(hangman.getAttempts()).append(" attempts remaining\n");
         label.append("\t:");
         return label.toString();
     }
