@@ -5,13 +5,13 @@ import java.io.Console;
 /**
  * Created by cpalacio on 9/3/2015.
  */
-public class ClientContext {
+public class HangmanConsole {
 
     public static final String COMMAND_LIST = "Commands: start, help, exit";
 
     private HangmanClientState state;
 
-    public ClientContext() {
+    public HangmanConsole() {
 
         state = new ClientNotPlaying(this);
         Console console = System.console();
