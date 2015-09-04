@@ -1,5 +1,7 @@
 package co.cagiral.view;
 
+import co.cagiral.view.console.HangmanConsole;
+
 import java.util.Observer;
 
 /**

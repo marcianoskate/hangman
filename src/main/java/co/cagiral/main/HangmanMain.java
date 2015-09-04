@@ -1,6 +1,6 @@
 package co.cagiral.main;
 
-import co.cagiral.view.HangmanConsole;
+import co.cagiral.view.console.HangmanConsole;
 
 /**
  * Created by cpalacio on 9/3/2015.
