@@ -21,11 +21,17 @@ public class HangmanImpl extends Observable implements Hangman {
     private boolean[] guessedLettersPosition;
     private Map<Character, Boolean> usedLetters = new LinkedHashMap<>();
     private int attempts = 10;
+    private boolean won = false;
 
     public HangmanImpl(String secretWord, HangmanService service) {
         this.service = service;
         this.secretWord = secretWord;
         this.guessedLettersPosition = new boolean[secretWord.length()];
+    }
+
+    @Override
+    public boolean hasWon() {
+        return won;
     }
 
     @Override
@@ -75,11 +81,24 @@ public class HangmanImpl extends Observable implements Hangman {
         boolean found = service.validateGuess(this, input);
         if (found) {
             setMessage("\tCorrect!");
+            if (isComplete()) {
+                won = true;
+            }
         } else {
             setMessage("\tNot there :D");
             failedAttempt();
         }
         return found;
+    }
+
+    private boolean isComplete() {
+        for (boolean b : guessedLettersPosition) {
+
+            if (!b) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void failedAttempt() {

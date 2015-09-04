@@ -83,7 +83,6 @@ public class ClientPlaying extends HangmanClientState {
     @Override
     public void update(Observable o, Object arg) {
 
-        context.displayMessage("state of observable " + o.hasChanged());
         if (arg != null && arg instanceof String) {
             String msg = (String) arg;
             context.displayMessage(msg);
@@ -92,8 +91,14 @@ public class ClientPlaying extends HangmanClientState {
         if (o == hangman) {
             Hangman hangman = (Hangman) o;
 
+            if (hangman.hasWon()) {
+                context.displayMessage("******************");
+                context.displayMessage("**** YOU WON! ****");
+                context.displayMessage("******************");
+                context.setState(new ClientNotPlaying(this));
+            }
             if (hangman.getAttempts() == 0) {
-                System.out.println("-=== GAME OVER ==--");
+                context.displayMessage("-=== GAME OVER ==--");
                 context.setState(new ClientNotPlaying(this));
             }
 

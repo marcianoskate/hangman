@@ -9,6 +9,8 @@ public interface Hangman {
 
     int getAttempts();
 
+    boolean hasWon();
+
     boolean[] getGuessedLetters();
 
     String getMaskedSecretWord();
