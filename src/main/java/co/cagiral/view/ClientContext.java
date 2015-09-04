@@ -17,9 +17,13 @@ public class ClientContext {
         Console console = System.console();
         System.out.println(COMMAND_LIST);
 
+        String input;
         while (true) {
 
-            String input = console.readLine(state.getLabel()).trim();
+            input = console.readLine(state.getLabel()).trim();
+            while (input == null || input.isEmpty()) {
+                input = console.readLine("try again!\n\t:").trim();
+            }
 
             switch (input) {
                 case "help":
