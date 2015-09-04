@@ -27,9 +27,7 @@ public class ClientPlaying extends HangmanClientState {
 
         System.out.println("secret word: " + secretWord);
         hangman = new HangmanImpl(secretWord, service);
-        System.out.println("observer: ");
         hangman.registerObserver(this);
-        System.out.println("--------- ");
     }
 
     @Override
@@ -61,10 +59,6 @@ public class ClientPlaying extends HangmanClientState {
 
         hangman.guess(input);
 
-        if (hangman.getAttempts() == 0) {
-            System.out.println("-=== GAME OVER ==--");
-            context.setState(new ClientNotPlaying(this));
-        }
     }
 
     @Override
@@ -81,5 +75,12 @@ public class ClientPlaying extends HangmanClientState {
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("Someone sent a message!");
+        if (o instanceof Hangman) {
+            Hangman hangman = (Hangman) o;
+            if (hangman.getAttempts() == 0) {
+                System.out.println("-=== GAME OVER ==--");
+                context.setState(new ClientNotPlaying(this));
+            }
+        }
     }
 }
