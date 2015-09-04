@@ -7,17 +7,17 @@ import java.util.Observer;
  */
 public interface Hangman {
 
-    void guess(String input);
-
     int getAttempts();
+
+    boolean[] getGuessedLetters();
 
     String getFormattedSecretWord();
 
     Iterable<Character> getUsedLetters();
 
-    String getSecretWord();
+    void guess(String input);
 
-    boolean[] getGuessedLetters();
+    String getSecretWord();
 
     void setGuessedLettersPosition(boolean[] guessedPositions);
 
