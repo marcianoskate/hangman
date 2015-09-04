@@ -13,6 +13,10 @@ import java.util.Observer;
 public class HangmanImpl extends Observable implements Hangman {
 
     private final HangmanService service;
+
+    /** Message to communicate with the Observer Objects. */
+    private Object message;
+
     private String secretWord;
     private boolean[] guessedLettersPosition;
     private Map<Character, Boolean> usedLetters = new LinkedHashMap<>();
@@ -35,8 +39,17 @@ public class HangmanImpl extends Observable implements Hangman {
 
             validateInput(input);
         }
+        setChanged();
+        notifyObservers(getMessage());
     }
 
+    private Object getMessage() {
+        return message;
+    }
+
+    public void setMessage(Object message) {
+        this.message = message;
+    }
 
     private boolean usedLetter(String input) {
         if (input.length() == 1) {
@@ -44,11 +57,11 @@ public class HangmanImpl extends Observable implements Hangman {
             //check for warning only on letters
             if (usedLetters.containsKey(inputChar)) {
                 if (usedLetters.get(inputChar)) {
-                    System.out.println("TTY! body part for you!");
+                    setMessage("I warned you, you lose an attempt");
                     failedAttempt();
                     return true;
                 }
-                System.out.println("\u25B3Warning!, already used, try again.");
+                setMessage("Warning!, already used, try again.");
                 usedLetters.put(inputChar, true);
                 return true;
             } else {
@@ -58,21 +71,19 @@ public class HangmanImpl extends Observable implements Hangman {
         return false;
     }
 
-    private void validateInput(String input) {
+    private boolean validateInput(String input) {
         boolean found = service.validateGuess(this, input);
         if (found) {
-            System.out.println("\tCorrect!");
-//            guessedLettersPosition = service.getGuessedPositions(secretWord, input.charAt(0), guessedLettersPosition);
+            setMessage("\tCorrect!");
         } else {
-            System.out.println("\tNot there :D");
+            setMessage("\tNot there :D");
             failedAttempt();
         }
+        return found;
     }
 
     private void failedAttempt() {
         attempts--;
-        setChanged();
-        notifyObservers();
     }
 
     @Override
@@ -81,7 +92,7 @@ public class HangmanImpl extends Observable implements Hangman {
     }
 
     @Override
-    public String getFormattedSecretWord() {
+    public String getMaskedSecretWord() {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < secretWord.length(); i++) {
             builder.append(" ").append(guessedLettersPosition[i] ? secretWord.charAt(i) : "_").append(" ");

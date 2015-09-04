@@ -11,7 +11,7 @@ public interface Hangman {
 
     boolean[] getGuessedLetters();
 
-    String getFormattedSecretWord();
+    String getMaskedSecretWord();
 
     Iterable<Character> getUsedLetters();
 

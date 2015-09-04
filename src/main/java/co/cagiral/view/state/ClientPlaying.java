@@ -67,7 +67,7 @@ public class ClientPlaying extends HangmanClientState {
     @Override
     public String getLabel() {
         StringBuilder label = new StringBuilder();
-        label.append("guess the word: " + hangman.getFormattedSecretWord()).append("\n");
+        label.append("guess the word: " + hangman.getMaskedSecretWord()).append("\n");
         label.append("so far you've guessed: " + hangman.getUsedLetters()).append("\n");
         label.append("You have ").append(hangman.getAttempts()).append(" attempts remaining\n");
         label.append("\t:");
@@ -83,12 +83,20 @@ public class ClientPlaying extends HangmanClientState {
     @Override
     public void update(Observable o, Object arg) {
 
+        context.displayMessage("state of observable " + o.hasChanged());
+        if (arg != null && arg instanceof String) {
+            String msg = (String) arg;
+            context.displayMessage(msg);
+            context.displayMessage("---------------------");
+        }
         if (o == hangman) {
             Hangman hangman = (Hangman) o;
+
             if (hangman.getAttempts() == 0) {
                 System.out.println("-=== GAME OVER ==--");
                 context.setState(new ClientNotPlaying(this));
             }
+
         }
     }
 }
