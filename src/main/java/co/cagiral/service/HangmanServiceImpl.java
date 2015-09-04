@@ -1,16 +1,15 @@
 package co.cagiral.service;
 
-import co.cagiral.dao.ArrayWords;
 import co.cagiral.dao.WordDictionary;
 
 /**
  * Created by cpalacio on 9/3/2015.
  */
-public class HangmanImpl implements Hangman {
+public class HangmanServiceImpl implements HangmanService {
 
     private final WordDictionary wordDictionary;
 
-    public HangmanImpl(WordDictionary dictionary) {
+    public HangmanServiceImpl(WordDictionary dictionary) {
         this.wordDictionary = dictionary;
     }
 

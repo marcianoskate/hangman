@@ -3,7 +3,7 @@ package co.cagiral.service;
 /**
  * Created by cpalacio on 9/2/2015.
  */
-public interface Hangman {
+public interface HangmanService {
 
     String getSecretWord();
 
