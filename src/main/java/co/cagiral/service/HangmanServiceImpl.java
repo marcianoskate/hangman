@@ -1,6 +1,7 @@
 package co.cagiral.service;
 
 import co.cagiral.dao.WordDictionary;
+import co.cagiral.view.model.Hangman;
 
 /**
  * Created by cpalacio on 9/3/2015.
@@ -17,6 +18,20 @@ public class HangmanServiceImpl implements HangmanService {
     public String getSecretWord() {
 
         return wordDictionary.getWord();
+    }
+
+    @Override
+    public boolean validateGuess(Hangman model, String guess) {
+
+        boolean result = validateGuess(model.getSecretWord(), guess);
+        if (result) {
+
+            if (guess.length() == 1) {
+
+                model.setGuessedLettersPosition(getGuessedPositions(model.getSecretWord(), guess.charAt(0), model.getGuessedLetters()));
+            }
+        }
+        return result;
     }
 
     @Override

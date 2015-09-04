@@ -2,7 +2,6 @@ package co.cagiral.view.model;
 
 import co.cagiral.service.HangmanService;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -13,14 +12,14 @@ public class HangmanImpl implements Hangman {
 
     private final HangmanService service;
     private String secretWord;
-    private boolean[] correctLetters;
+    private boolean[] guessedLettersPosition;
     private Map<Character, Boolean> usedLetters = new LinkedHashMap<>();
     private int attempts = 10;
 
     public HangmanImpl(String secretWord, HangmanService service) {
         this.service = service;
         this.secretWord = secretWord;
-        this.correctLetters = new boolean[secretWord.length()];
+        this.guessedLettersPosition = new boolean[secretWord.length()];
     }
 
     @Override
@@ -62,12 +61,12 @@ public class HangmanImpl implements Hangman {
     }
 
     private void validateInput(String input) {
-        boolean found = service.validateGuess(this.secretWord, input);
+        boolean found = service.validateGuess(this, input);
         if (found) {
             System.out.println("\tCorrect!");
-            correctLetters = service.getGuessedPositions(secretWord, input.charAt(0), correctLetters);
+//            guessedLettersPosition = service.getGuessedPositions(secretWord, input.charAt(0), guessedLettersPosition);
         } else {
-            System.out.println("\tIncorrect!");
+            System.out.println("\tNot there :D");
             failedAttempt();
         }
     }
@@ -85,7 +84,7 @@ public class HangmanImpl implements Hangman {
     public String getFormattedSecretWord() {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < secretWord.length(); i++) {
-            builder.append(" ").append(correctLetters[i] ? secretWord.charAt(i) : "_").append(" ");
+            builder.append(" ").append(guessedLettersPosition[i] ? secretWord.charAt(i) : "_").append(" ");
         }
         return builder.toString();
     }
@@ -93,5 +92,20 @@ public class HangmanImpl implements Hangman {
     @Override
     public Iterable<Character> getUsedLetters() {
         return usedLetters.keySet();
+    }
+
+    @Override
+    public String getSecretWord() {
+        return secretWord;
+    }
+
+    @Override
+    public boolean[] getGuessedLetters() {
+        return guessedLettersPosition;
+    }
+
+    @Override
+    public void setGuessedLettersPosition(boolean[] guessedPositions) {
+        this.guessedLettersPosition = guessedPositions;
     }
 }
