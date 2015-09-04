@@ -13,6 +13,8 @@ import java.util.Observable;
  */
 public class ClientPlaying extends HangmanClientState {
 
+    public static final String HELP_MSG = "Guess a letter or a word; exit will end the game.";
+
     private final HangmanService service = new HangmanServiceImpl(new ArrayWords());
     private Hangman hangman;
 
@@ -28,6 +30,7 @@ public class ClientPlaying extends HangmanClientState {
         System.out.println("secret word: " + secretWord);
         hangman = new HangmanImpl(secretWord, service);
         hangman.registerObserver(this);
+        context.showHelp(HELP_MSG);
     }
 
     @Override
@@ -38,7 +41,7 @@ public class ClientPlaying extends HangmanClientState {
     @Override
     public void onHelp() {
 
-        context.showHelp();
+        context.showHelp(HELP_MSG);
     }
 
     @Override

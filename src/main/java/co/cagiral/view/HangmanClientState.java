@@ -7,9 +7,9 @@ import java.util.Observer;
  */
 public abstract class HangmanClientState implements Observer {
 
-    protected final ClientContext context;
+    protected final HangmanConsole context;
 
-    public HangmanClientState(ClientContext context) {
+    public HangmanClientState(HangmanConsole context) {
 
         this.context = context;
     }

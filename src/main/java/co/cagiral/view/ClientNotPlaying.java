@@ -6,10 +6,12 @@ import java.util.Observable;
  * Created by cpalacio on 9/3/2015.
  */
 public class ClientNotPlaying extends HangmanClientState {
+    public static final String HELP_MSG = "Commands: start, help, exit";
 
-    public ClientNotPlaying(ClientContext context) {
+    public ClientNotPlaying(HangmanConsole context) {
 
         super(context);
+        context.showHelp(HELP_MSG);
     }
 
     public ClientNotPlaying(HangmanClientState state) {
@@ -26,7 +28,7 @@ public class ClientNotPlaying extends HangmanClientState {
     @Override
     public void onHelp() {
 
-        context.showHelp();
+        context.showHelp(HELP_MSG);
     }
 
     @Override
