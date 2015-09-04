@@ -1,4 +1,4 @@
-package co.cagiral.view;
+package co.cagiral.view.state;
 
 import co.cagiral.view.console.HangmanConsole;
 

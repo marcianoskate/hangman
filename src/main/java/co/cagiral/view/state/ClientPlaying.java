@@ -1,8 +1,9 @@
-package co.cagiral.view;
+package co.cagiral.view.state;
 
 import co.cagiral.dao.ArrayWords;
 import co.cagiral.service.HangmanService;
 import co.cagiral.service.HangmanServiceImpl;
+import co.cagiral.view.HangmanProperties;
 import co.cagiral.view.model.Hangman;
 import co.cagiral.view.model.HangmanImpl;
 
