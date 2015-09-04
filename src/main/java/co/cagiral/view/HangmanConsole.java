@@ -5,9 +5,7 @@ import java.io.Console;
 /**
  * Created by cpalacio on 9/3/2015.
  */
-public class HangmanConsole {
-
-    public static final String COMMAND_LIST = "Commands: start, help, exit";
+public class HangmanConsole implements HangmanView {
 
     private HangmanClientState state;
 
@@ -15,7 +13,6 @@ public class HangmanConsole {
 
         state = new ClientNotPlaying(this);
         Console console = System.console();
-        System.out.println(COMMAND_LIST);
 
         String input;
         while (true) {
@@ -42,8 +39,8 @@ public class HangmanConsole {
         }
     }
 
-    public void showHelp() {
-        System.out.println(COMMAND_LIST);
+    public void showHelp(String helpMsg) {
+        System.out.println(helpMsg);
     }
 
     public void startGame() {
