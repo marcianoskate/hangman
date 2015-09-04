@@ -3,6 +3,7 @@ package co.cagiral.view.model;
 import co.cagiral.service.HangmanService;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -13,7 +14,7 @@ public class HangmanImpl implements Hangman {
     private final HangmanService service;
     private String secretWord;
     private boolean[] correctLetters;
-    private Map<Character, Boolean> usedLetters = new HashMap<>();
+    private Map<Character, Boolean> usedLetters = new LinkedHashMap<>();
     private int attempts = 10;
 
     public HangmanImpl(String secretWord, HangmanService service) {
@@ -29,6 +30,10 @@ public class HangmanImpl implements Hangman {
 
     @Override
     public void guess(String input) {
+
+        if (attempts == 0) {
+            return;
+        }
 
         if (!usedLetter(input)) {
 

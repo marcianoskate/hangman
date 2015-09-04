@@ -55,6 +55,11 @@ public class ClientPlaying extends HangmanClientState {
         }
 
         hangman.guess(input);
+
+        if (hangman.getAttempts() == 0) {
+            System.out.println("-=== GAME OVER ==--");
+            context.setState(new ClientNotPlaying(this));
+        }
     }
 
     @Override

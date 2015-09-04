@@ -26,11 +26,9 @@ public class HangmanServiceImpl implements HangmanService {
         char[] asArray = secretWord.toCharArray();
         for (int i = 0; i < asArray.length; i++) {
             if (asArray[i] == guess) {
-                System.out.print(i + ", ");
                 result[i] = true;
             }
         }
-        System.out.print("\n");
         return result;
     }
 
