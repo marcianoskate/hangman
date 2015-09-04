@@ -20,6 +20,22 @@ public class HangmanServiceImpl implements HangmanService {
     }
 
     @Override
+    public boolean[] getGuessedPositions(String secretWord, char guess, boolean[] previousState) {
+
+        boolean[] result = previousState.clone();
+        char[] asArray = secretWord.toCharArray();
+        System.out.print("guess in postion: ");
+        for (int i = 0; i < asArray.length; i++) {
+            if (asArray[i] == guess) {
+                System.out.print(i + ", ");
+                result[i] = true;
+            }
+        }
+        System.out.print("\n");
+        return result;
+    }
+
+    @Override
     public boolean validateGuess(String secretWord, String guess) {
 
         if (secretWord == null) {

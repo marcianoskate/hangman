@@ -3,6 +3,8 @@ package co.cagiral.view;
 import co.cagiral.dao.ArrayWords;
 import co.cagiral.service.HangmanService;
 import co.cagiral.service.HangmanServiceImpl;
+import co.cagiral.view.model.Hangman;
+import co.cagiral.view.model.HangmanImpl;
 
 /**
  * Created by cpalacio on 9/3/2015.
@@ -10,16 +12,19 @@ import co.cagiral.service.HangmanServiceImpl;
 public class ClientPlaying extends HangmanClientState {
 
     private final HangmanService service = new HangmanServiceImpl(new ArrayWords());
-    private String secretWord;
+    private Hangman hangman;
 
     public ClientPlaying(HangmanClientState prevState) {
         super(prevState);
 
-
+        String secretWord = null;
         while (secretWord == null || HangmanProperties.isReserved(secretWord)) {
 
             secretWord = service.getSecretWord();
         }
+
+        System.out.println("secret word: " + secretWord);
+        hangman = new HangmanImpl(secretWord, service);
     }
 
     @Override
@@ -50,20 +55,12 @@ public class ClientPlaying extends HangmanClientState {
         }
 
         System.out.println("\tguessed: " + input);
-        boolean found = service.validateGuess(secretWord, input);
-        if (found) {
-            System.out.println("\tCorrect!");
-        } else {
-            System.out.println("\tIncorrect!");
-        }
+        hangman.guess(input);
     }
 
     @Override
     public String getLabel() {
-        return "guess the word: " + formattedSecretWord() + " \n\t:";
+        return "guess the word: " + hangman.getFormattedSecretWord() + " \n\t:";
     }
 
-    private String formattedSecretWord() {
-        return "_ _ _ _ _";
-    }
 }
