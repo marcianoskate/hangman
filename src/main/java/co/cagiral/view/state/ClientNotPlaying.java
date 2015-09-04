@@ -18,6 +18,7 @@ public class ClientNotPlaying extends HangmanClientState {
 
     public ClientNotPlaying(HangmanClientState state) {
         super(state);
+        context.showHelp(HELP_MSG);
     }
 
     @Override

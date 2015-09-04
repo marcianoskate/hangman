@@ -50,7 +50,9 @@ public class HangmanConsole implements HangmanView {
     }
 
     public void startGame() {
+        System.out.println("======================");
         System.out.println("-=== Game Started ===-");
+        System.out.println("======================");
     }
 
     public void exit() {

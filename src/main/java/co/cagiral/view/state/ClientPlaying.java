@@ -68,7 +68,6 @@ public class ClientPlaying extends HangmanClientState {
     @Override
     public String getLabel() {
         StringBuilder label = new StringBuilder();
-        label.append("\n\n=========\n");
         label.append("guess the word: " + hangman.getFormattedSecretWord()).append("\n");
         label.append("so far you've guessed: " + hangman.getUsedLetters()).append("\n");
         label.append("You have ").append(hangman.getAttempts()).append(" attempts remaining\n");

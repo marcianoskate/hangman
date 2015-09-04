@@ -113,7 +113,6 @@ public class HangmanImpl extends Observable implements Hangman {
     public void registerObserver(Observer observer) {
 
         this.addObserver(observer);
-        System.out.println("Added oserver: " + observer + " so far: " + countObservers() + " observers");
     }
 
     @Override
