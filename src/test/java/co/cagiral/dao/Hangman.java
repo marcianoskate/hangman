@@ -1,6 +1,9 @@
 package co.cagiral.dao;
 
 import co.cagiral.service.HangmanImpl;
+import mockit.Expectations;
+import mockit.Mocked;
+import mockit.Verifications;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,13 +14,16 @@ import static org.junit.Assert.*;
  */
 public class Hangman {
 
+    @Mocked
+    WordDictionary dictionary;
+
     private co.cagiral.service.Hangman instance;
     private final String secretWord = "fuzzy";
 
     @Before
     public void init() {
 
-        instance = new HangmanImpl();
+        instance = new HangmanImpl(dictionary);
     }
 
     @Test (expected = IllegalArgumentException.class)
@@ -57,5 +63,20 @@ public class Hangman {
     @Test
     public void invalid_guess_returns_false() {
         assertFalse(instance.validateGuess(secretWord, "fuzzyi"));
+    }
+
+    @Test
+    public void get_word_returns_word() {
+
+        new Expectations() {{
+            dictionary.getWord(); result = secretWord;
+        }};
+
+        assertEquals(instance.getSecretWord(), secretWord);
+
+        new Verifications() {{
+
+            dictionary.getWord();
+        }};
     }
 }

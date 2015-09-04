@@ -10,8 +10,8 @@ public class HangmanImpl implements Hangman {
 
     private final WordDictionary wordDictionary;
 
-    public HangmanImpl() {
-        this.wordDictionary = new ArrayWords();
+    public HangmanImpl(WordDictionary dictionary) {
+        this.wordDictionary = dictionary;
     }
 
     @Override
