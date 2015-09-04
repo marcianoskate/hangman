@@ -12,4 +12,6 @@ public interface Hangman {
     void getAttempts();
 
     String getFormattedSecretWord();
+
+    Iterable<Character> getUsedLetters();
 }

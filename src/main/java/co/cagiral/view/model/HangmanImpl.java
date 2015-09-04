@@ -14,6 +14,7 @@ public class HangmanImpl implements Hangman {
     private String secretWord;
     private boolean[] correctLetters;
     private Map<Character, Boolean> usedLetters = new HashMap<>();
+    private int attempts = 10;
 
     public HangmanImpl(String secretWord, HangmanService service) {
         this.service = service;
@@ -42,7 +43,7 @@ public class HangmanImpl implements Hangman {
             if (usedLetters.containsKey(inputChar)) {
                 if (usedLetters.get(inputChar)) {
                     System.out.println("TTY! body part for you!");
-                    //reduce attempts
+                    failedAttempt();
                     return true;
                 }
                 System.out.println("\u25B3Warning!, already used, try again.");
@@ -62,7 +63,12 @@ public class HangmanImpl implements Hangman {
             correctLetters = service.getGuessedPositions(secretWord, input.charAt(0), correctLetters);
         } else {
             System.out.println("\tIncorrect!");
+            failedAttempt();
         }
+    }
+
+    private void failedAttempt() {
+        attempts--;
     }
 
     @Override
@@ -77,5 +83,10 @@ public class HangmanImpl implements Hangman {
             builder.append(" ").append(correctLetters[i] ? secretWord.charAt(i) : "_").append(" ");
         }
         return builder.toString();
+    }
+
+    @Override
+    public Iterable<Character> getUsedLetters() {
+        return usedLetters.keySet();
     }
 }
