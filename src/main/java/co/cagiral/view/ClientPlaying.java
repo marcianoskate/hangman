@@ -23,12 +23,17 @@ public class ClientPlaying extends HangmanClientState {
     @Override
     public void onExit() {
 
-        context.exit();
+        context.setState(new ClientNotPlaying(this));
     }
 
     @Override
     public void guess(String input) {
 
         System.out.println("\t guessed: " + input);
+    }
+
+    @Override
+    public String getLabel() {
+        return "take a guess: ";
     }
 }

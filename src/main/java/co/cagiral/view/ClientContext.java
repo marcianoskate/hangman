@@ -15,10 +15,11 @@ public class ClientContext {
 
         state = new ClientNotPlaying(this);
         Console console = System.console();
+        System.out.println(COMMAND_LIST);
 
         while (true) {
-            System.out.println(COMMAND_LIST);
-            String input = console.readLine("hangman: ");
+
+            String input = console.readLine(state.getLabel()).trim();
 
             switch (input) {
                 case "help":
@@ -37,16 +38,24 @@ public class ClientContext {
         }
     }
 
-    public static void showHelp() {
+    public void showHelp() {
         System.out.println(COMMAND_LIST);
     }
 
-    public static void startGame() {
+    public void startGame() {
         System.out.println("Game Started");
     }
 
 
     public void exit() {
         System.exit(0);
+    }
+
+    public HangmanClientState getState() {
+        return state;
+    }
+
+    public void setState(HangmanClientState state) {
+        this.state = state;
     }
 }

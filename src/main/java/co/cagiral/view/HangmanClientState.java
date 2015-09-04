@@ -24,4 +24,6 @@ public abstract class HangmanClientState {
     public abstract void onExit();
 
     public abstract void guess(String input);
+
+    public abstract String getLabel();
 }

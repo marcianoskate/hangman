@@ -17,5 +17,4 @@ public class HangmanMain {
         new ClientContext();
     }
 
-
 }

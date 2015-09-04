@@ -10,10 +10,15 @@ public class ClientNotPlaying extends HangmanClientState {
         super(context);
     }
 
+    public ClientNotPlaying(HangmanClientState state) {
+        super(state);
+    }
+
     @Override
     public void onStart() {
 
         context.startGame();
+        context.setState(new ClientPlaying(this));
     }
 
     @Override
@@ -31,6 +36,12 @@ public class ClientNotPlaying extends HangmanClientState {
     @Override
     public void guess(String input) {
 
-        new ClientPlaying(this);
+        System.out.println("You must start a game. Type start.");
+    }
+
+    @Override
+    public String getLabel() {
+
+        return "Hangman: ";
     }
 }
