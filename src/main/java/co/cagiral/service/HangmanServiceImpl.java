@@ -24,7 +24,6 @@ public class HangmanServiceImpl implements HangmanService {
 
         boolean[] result = previousState.clone();
         char[] asArray = secretWord.toCharArray();
-        System.out.print("guess in postion: ");
         for (int i = 0; i < asArray.length; i++) {
             if (asArray[i] == guess) {
                 System.out.print(i + ", ");

@@ -76,7 +76,6 @@ public class HangmanImpl implements Hangman {
         for (int i = 0; i < secretWord.length(); i++) {
             builder.append(" ").append(correctLetters[i] ? secretWord.charAt(i) : "_").append(" ");
         }
-        System.out.println("blah" + builder);
         return builder.toString();
     }
 }
