@@ -44,20 +44,17 @@ public class HangmanConsole implements HangmanView {
     }
 
     public void showHelp(String helpMsg) {
+        System.out.println("---------------------");
         System.out.println(helpMsg);
+        System.out.println("---------------------");
     }
 
     public void startGame() {
-        System.out.println("Game Started");
+        System.out.println("-=== Game Started ===-");
     }
-
 
     public void exit() {
         System.exit(0);
-    }
-
-    public HangmanClientState getState() {
-        return state;
     }
 
     public void setState(HangmanClientState state) {
