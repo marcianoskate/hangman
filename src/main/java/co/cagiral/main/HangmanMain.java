@@ -1,8 +1,6 @@
 package co.cagiral.main;
 
-import co.cagiral.view.ClientContext;
-
-import java.io.Console;
+import co.cagiral.view.HangmanConsole;
 
 /**
  * Created by cpalacio on 9/3/2015.
@@ -14,7 +12,7 @@ public class HangmanMain {
 
     public static void main(String[] args) {
 
-        new ClientContext();
+        new HangmanConsole();
     }
 
 }
