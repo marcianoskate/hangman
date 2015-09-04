@@ -1,4 +1,8 @@
-package co.cagiral.view;
+package co.cagiral.view.console;
+
+import co.cagiral.view.ClientNotPlaying;
+import co.cagiral.view.HangmanClientState;
+import co.cagiral.view.HangmanView;
 
 import java.io.Console;
 
