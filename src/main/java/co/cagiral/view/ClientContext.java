@@ -5,6 +5,10 @@ package co.cagiral.view;
  */
 public class ClientContext {
 
+    private HangmanClientState state;
+
     public ClientContext() {
+
+        state = new ClientNotPlaying(this);
     }
 }

@@ -7,18 +7,20 @@ import java.io.Console;
  */
 public class HangmanMain {
 
+    public static final String COMMAND_LIST = "Commands: start, help, exit";
     public static boolean exit = false;
 
     public static void main(String[] args) {
 
-        while (!exit) {
+        System.out.println(COMMAND_LIST);
+        
+    }
 
-            Console console = System.console();
-            String input = console.readLine("Enter input: ");
+    private static void showHelp() {
+        System.out.println(COMMAND_LIST);
+    }
 
-            System.out.println(input);
-
-            exit = "exit".equalsIgnoreCase(input);
-        }
+    private static void startGame() {
+        System.out.println("Game Started");
     }
 }
