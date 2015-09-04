@@ -1,6 +1,7 @@
 package co.cagiral.dao;
 
-import co.cagiral.service.HangmanImpl;
+import co.cagiral.service.HangmanServiceImpl;
+import co.cagiral.service.HangmanService;
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.Verifications;
@@ -17,13 +18,13 @@ public class Hangman {
     @Mocked
     WordDictionary dictionary;
 
-    private co.cagiral.service.Hangman instance;
+    private HangmanService instance;
     private final String secretWord = "fuzzy";
 
     @Before
     public void init() {
 
-        instance = new HangmanImpl(dictionary);
+        instance = new HangmanServiceImpl(dictionary);
     }
 
     @Test (expected = IllegalArgumentException.class)

@@ -1,18 +1,15 @@
 package co.cagiral.view;
 
 import co.cagiral.dao.ArrayWords;
-import co.cagiral.dao.WordDictionary;
-import co.cagiral.service.Hangman;
-import co.cagiral.service.HangmanImpl;
-
-import java.util.regex.Pattern;
+import co.cagiral.service.HangmanService;
+import co.cagiral.service.HangmanServiceImpl;
 
 /**
  * Created by cpalacio on 9/3/2015.
  */
 public class ClientPlaying extends HangmanClientState {
 
-    private final Hangman service = new HangmanImpl(new ArrayWords());
+    private final HangmanService service = new HangmanServiceImpl(new ArrayWords());
     private String secretWord;
 
     public ClientPlaying(HangmanClientState prevState) {
