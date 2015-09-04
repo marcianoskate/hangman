@@ -1,11 +1,11 @@
 package co.cagiral.view.model;
 
+import java.util.Observer;
+
 /**
  * Created by cpalacio on 9/4/2015.
  */
 public interface Hangman {
-
-    void setSecretWord(String secretWord);
 
     void guess(String input);
 
@@ -20,4 +20,8 @@ public interface Hangman {
     boolean[] getGuessedLetters();
 
     void setGuessedLettersPosition(boolean[] guessedPositions);
+
+    void registerObserver(Observer observer);
+
+    void removeObserver(Observer observer);
 }

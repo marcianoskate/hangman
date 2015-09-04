@@ -1,5 +1,7 @@
 package co.cagiral.view;
 
+import java.util.Observable;
+
 /**
  * Created by cpalacio on 9/3/2015.
  */
@@ -43,5 +45,10 @@ public class ClientNotPlaying extends HangmanClientState {
     public String getLabel() {
 
         return "Hangman: ";
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("Client not playing, got a message O_o");
     }
 }

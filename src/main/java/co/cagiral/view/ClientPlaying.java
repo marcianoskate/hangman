@@ -6,6 +6,8 @@ import co.cagiral.service.HangmanServiceImpl;
 import co.cagiral.view.model.Hangman;
 import co.cagiral.view.model.HangmanImpl;
 
+import java.util.Observable;
+
 /**
  * Created by cpalacio on 9/3/2015.
  */
@@ -25,6 +27,9 @@ public class ClientPlaying extends HangmanClientState {
 
         System.out.println("secret word: " + secretWord);
         hangman = new HangmanImpl(secretWord, service);
+        System.out.println("observer: ");
+        hangman.registerObserver(this);
+        System.out.println("--------- ");
     }
 
     @Override
@@ -73,4 +78,8 @@ public class ClientPlaying extends HangmanClientState {
         return label.toString();
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("Someone sent a message!");
+    }
 }

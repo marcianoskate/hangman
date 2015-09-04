@@ -1,9 +1,11 @@
 package co.cagiral.view;
 
+import java.util.Observer;
+
 /**
  * Created by cpalacio on 9/3/2015.
  */
-public abstract class HangmanClientState {
+public abstract class HangmanClientState implements Observer {
 
     protected final ClientContext context;
 

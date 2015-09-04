@@ -4,11 +4,13 @@ import co.cagiral.service.HangmanService;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by cpalacio on 9/4/2015.
  */
-public class HangmanImpl implements Hangman {
+public class HangmanImpl extends Observable implements Hangman {
 
     private final HangmanService service;
     private String secretWord;
@@ -23,11 +25,6 @@ public class HangmanImpl implements Hangman {
     }
 
     @Override
-    public void setSecretWord(String secretWord) {
-        this.secretWord = secretWord;
-    }
-
-    @Override
     public void guess(String input) {
 
         if (attempts == 0) {
@@ -39,6 +36,7 @@ public class HangmanImpl implements Hangman {
             validateInput(input);
         }
     }
+
 
     private boolean usedLetter(String input) {
         if (input.length() == 1) {
@@ -73,6 +71,8 @@ public class HangmanImpl implements Hangman {
 
     private void failedAttempt() {
         attempts--;
+        setChanged();
+        notifyObservers();
     }
 
     @Override
@@ -107,5 +107,18 @@ public class HangmanImpl implements Hangman {
     @Override
     public void setGuessedLettersPosition(boolean[] guessedPositions) {
         this.guessedLettersPosition = guessedPositions;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+
+        this.addObserver(observer);
+        System.out.println("Added oserver: " + observer + " so far: " + countObservers() + " observers");
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+
+        this.removeObserver(observer);
     }
 }
