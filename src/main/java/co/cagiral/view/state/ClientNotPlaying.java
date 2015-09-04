@@ -21,10 +21,19 @@ public class ClientNotPlaying extends HangmanClientState {
         context.showHelp(HELP_MSG);
     }
 
+    private String getStartMsg() {
+        StringBuilder startMsg = new StringBuilder();
+        startMsg.append("======================\n")
+                .append("-=== Game Started ===-\n")
+                .append("======================");
+        return startMsg.toString();
+    }
+
     @Override
     public void onStart() {
 
-        context.startGame();
+
+        context.displayMessage(getStartMsg());
         context.setState(new ClientPlaying(this));
     }
 

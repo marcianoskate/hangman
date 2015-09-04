@@ -60,7 +60,6 @@ public class ClientPlaying extends HangmanClientState {
                 return;
             }
         }
-
         hangman.guess(input);
 
     }
@@ -75,10 +74,16 @@ public class ClientPlaying extends HangmanClientState {
         return label.toString();
     }
 
+    /**
+     * Observer method executed any time an Observable instance executes the notifyObservers
+     * and this Object is registerd as an observer.
+     * @param o Object that's being observed
+     * @param arg Objects that can be passed as paramter by the Observable instance
+     */
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Someone sent a message!");
-        if (o instanceof Hangman) {
+
+        if (o == hangman) {
             Hangman hangman = (Hangman) o;
             if (hangman.getAttempts() == 0) {
                 System.out.println("-=== GAME OVER ==--");
