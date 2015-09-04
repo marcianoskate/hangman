@@ -3,17 +3,15 @@ package co.cagiral.view;
 /**
  * Created by cpalacio on 9/3/2015.
  */
-public class ClientNotPlaying extends HangmanClientState {
+public class ClientPlaying extends HangmanClientState {
 
-    public ClientNotPlaying(ClientContext context) {
-
-        super(context);
+    public ClientPlaying(HangmanClientState prevState) {
+        super(prevState);
     }
 
     @Override
     public void onStart() {
-
-        context.startGame();
+        System.out.println("Game already Started, type exit to finish");
     }
 
     @Override
@@ -31,6 +29,6 @@ public class ClientNotPlaying extends HangmanClientState {
     @Override
     public void guess(String input) {
 
-        new ClientPlaying(this);
+        System.out.println("\t guessed: " + input);
     }
 }
