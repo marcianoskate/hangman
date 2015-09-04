@@ -5,7 +5,7 @@ package co.cagiral.view;
  */
 public abstract class HangmanClientState {
 
-    private final ClientContext context;
+    protected final ClientContext context;
 
     public HangmanClientState(ClientContext context) {
 
@@ -22,4 +22,6 @@ public abstract class HangmanClientState {
     public abstract void onHelp();
 
     public abstract void onExit();
+
+    public abstract void guess(String input);
 }

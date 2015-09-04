@@ -13,16 +13,24 @@ public class ClientNotPlaying extends HangmanClientState {
     @Override
     public void onStart() {
 
+        context.startGame();
     }
 
     @Override
     public void onHelp() {
 
+        context.showHelp();
     }
 
     @Override
     public void onExit() {
 
         System.exit(0);
+    }
+
+    @Override
+    public void guess(String input) {
+
+        System.out.println("guess: " + input);
     }
 }

@@ -1,5 +1,7 @@
 package co.cagiral.main;
 
+import co.cagiral.view.ClientContext;
+
 import java.io.Console;
 
 /**
@@ -7,20 +9,13 @@ import java.io.Console;
  */
 public class HangmanMain {
 
-    public static final String COMMAND_LIST = "Commands: start, help, exit";
+
     public static boolean exit = false;
 
     public static void main(String[] args) {
 
-        System.out.println(COMMAND_LIST);
-        
+        new ClientContext();
     }
 
-    private static void showHelp() {
-        System.out.println(COMMAND_LIST);
-    }
 
-    private static void startGame() {
-        System.out.println("Game Started");
-    }
 }
