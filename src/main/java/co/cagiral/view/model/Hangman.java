@@ -9,7 +9,7 @@ public interface Hangman {
 
     void guess(String input);
 
-    void getAttempts();
+    int getAttempts();
 
     String getFormattedSecretWord();
 

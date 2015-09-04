@@ -72,8 +72,8 @@ public class HangmanImpl implements Hangman {
     }
 
     @Override
-    public void getAttempts() {
-
+    public int getAttempts() {
+        return attempts;
     }
 
     @Override
