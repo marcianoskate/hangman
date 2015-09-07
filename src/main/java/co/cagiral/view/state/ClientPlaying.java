@@ -28,7 +28,7 @@ public class ClientPlaying extends HangmanClientState {
             secretWord = service.getSecretWord();
         }
 
-        System.out.println("secret word: " + secretWord);
+        context.displayMessage("secret word: " + secretWord);
         hangman = new HangmanImpl(secretWord, service);
         hangman.registerObserver(this);
         context.showHelp(HELP_MSG);

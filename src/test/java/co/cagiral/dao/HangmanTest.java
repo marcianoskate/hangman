@@ -84,6 +84,16 @@ public class HangmanTest {
     	}};
         assertTrue(service.validateGuess(hangmanModel, mockedGuess));
     }
+    
+    @Test
+    public void valid_word_wins() {
+    	
+    	new Expectations() {{
+    		hangmanModel.getSecretWord(); result = mockedGuess;
+    	}};
+        assertTrue(service.validateGuess(hangmanModel, mockedGuess));
+//        assertTrue(hangmanModel.hasWon());
+    }
 
     @Test
     public void invalid_guess_returns_false() {

@@ -29,7 +29,7 @@ public class HangmanServiceImpl implements HangmanService {
             if (guess.length() == 1) {
 
                 model.setGuessedLettersPosition(getGuessedPositions(model.getSecretWord(), guess.charAt(0), model.getGuessedLetters()));
-            }
+            } 
         }
         return result;
     }

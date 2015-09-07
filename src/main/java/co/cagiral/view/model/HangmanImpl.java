@@ -81,7 +81,7 @@ public class HangmanImpl extends Observable implements Hangman {
         boolean found = service.validateGuess(this, input);
         if (found) {
             setMessage("\tCorrect!");
-            if (isComplete()) {
+            if (input.length() > 1 || isComplete()) {
                 won = true;
             }
         } else {
