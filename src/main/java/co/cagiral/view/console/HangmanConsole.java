@@ -12,7 +12,7 @@ import java.io.Console;
 public class HangmanConsole implements HangmanView {
 
     private HangmanClientState state;
-
+    
     public HangmanConsole() {
 
         state = new ClientNotPlaying(this);

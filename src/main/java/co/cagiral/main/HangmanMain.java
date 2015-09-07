@@ -1,6 +1,6 @@
 package co.cagiral.main;
 
-import co.cagiral.view.console.HangmanConsole;
+import co.cagiral.view.HangmanViewFactory;
 
 /**
  * Created by cpalacio on 9/3/2015.
@@ -12,7 +12,7 @@ public class HangmanMain {
 
     public static void main(String[] args) {
 
-        new HangmanConsole();
+        HangmanViewFactory.console();
     }
 
 }
