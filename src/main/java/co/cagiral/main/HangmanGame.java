@@ -3,16 +3,17 @@ package co.cagiral.main;
 import co.cagiral.view.HangmanViewFactory;
 
 /**
- * Created by cpalacio on 9/3/2015.
+ * Main class that gets invoke anytime the game is started.
+ * It is in charge of starting the clients.
  */
-public class HangmanMain {
+public class HangmanGame {
 
 
     public static boolean exit = false;
 
     public static void main(String[] args) {
 
-        HangmanViewFactory.console();
+    	HangmanViewFactory.console();
     }
 
 }
