@@ -47,7 +47,6 @@ public class HangmanServiceImpl implements HangmanService {
         return result;
     }
 
-    @Override
     public boolean validateGuess(String secretWord, String guess) {
 
         if (secretWord == null) {

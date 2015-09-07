@@ -11,7 +11,5 @@ public interface HangmanService {
 
     boolean validateGuess(Hangman model, String guess);
 
-    boolean validateGuess(String secretWord, String guess);
-
     boolean[] getGuessedPositions(String secretWord, char guess, boolean[] previousState);
 }
