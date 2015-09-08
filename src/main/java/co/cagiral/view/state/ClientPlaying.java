@@ -1,8 +1,6 @@
 package co.cagiral.view.state;
 
-import co.cagiral.dao.ArrayWords;
 import co.cagiral.dao.Dictionoaries;
-import co.cagiral.dao.FileWords;
 import co.cagiral.service.HangmanService;
 import co.cagiral.service.HangmanServiceImpl;
 import co.cagiral.view.HangmanProperties;
@@ -25,7 +23,6 @@ public class ClientPlaying extends HangmanClientState {
     public ClientPlaying(HangmanClientState prevState) {
         super(prevState);
 
-        System.out.println("Context has the following path: " + context.getFilePath());
         service = new HangmanServiceImpl(Dictionoaries.getFileDictionary(context.getFilePath()));
 
         String secretWord = null;
@@ -34,22 +31,21 @@ public class ClientPlaying extends HangmanClientState {
             secretWord = service.getSecretWord();
         }
 
-//        context.displayMessage("secret word: " + secretWord);
         hangman = new HangmanImpl(secretWord, service);
         hangman.registerObserver(this);
         context.drawHangman(HangmanDrawing.getHangmanDrawing(hangman.getAttempts()));
-        context.showHelp(HELP_MSG);
+        context.displayMessage(HELP_MSG);
     }
 
     @Override
     public void onStart() {
-        System.out.println("Game already Started, type exit to finish");
+        context.displayMessage("Game already Started, type exit to finish");
     }
 
     @Override
     public void onHelp() {
 
-        context.showHelp(HELP_MSG);
+        context.displayMessage(HELP_MSG);
     }
 
     @Override

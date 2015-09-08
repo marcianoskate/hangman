@@ -52,24 +52,24 @@ public class HangmanConsole implements HangmanView {
         }
     }
 
+    @Override
     public void showHelp(String helpMsg) {
         System.out.println("---------------------");
         System.out.println(helpMsg);
         System.out.println("---------------------");
     }
 
-    public void exit() {
-        System.exit(0);
-    }
-
+    @Override
     public void setState(HangmanClientState state) {
         this.state = state;
     }
 
+    @Override
     public void displayMessage(String msg) {
         System.out.println(msg);
     }
-    
+
+    @Override
     public void drawHangman(HangmanDrawing hangmanDrawing) {
 
         hangmanDrawing.draw();
@@ -78,5 +78,10 @@ public class HangmanConsole implements HangmanView {
     @Override
     public String getFilePath() {
         return filepath;
+    }
+
+    @Override
+    public void exit() {
+        System.exit(0);
     }
 }

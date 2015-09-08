@@ -29,10 +29,8 @@ public class FileWords implements WordDictionary {
         String tempFilePath = providedPath == null ? DEFAULT_FILE_PATH : providedPath;
         if (providedPath == null) {
             inputStream = getStream(tempFilePath);
-            System.out.println("~~Starting Dictionary from file on path: " + inputStream);
         } else {
             filePath = Paths.get(providedPath);
-            System.out.println("~~Starting Dictionary from file on path: " + filePath);
         }
         init();
     }
@@ -46,8 +44,6 @@ public class FileWords implements WordDictionary {
     }
 
     private void init() {
-
-        System.out.println("Reading file on path " + filePath);
 
         if (filePath != null) {
 

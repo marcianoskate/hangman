@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import co.cagiral.view.HangmanView;
+import co.cagiral.view.model.drawing.HangmanDrawing;
+import co.cagiral.view.state.HangmanClientState;
 
 public class HangmanSwing implements HangmanView {
 	
@@ -31,5 +33,33 @@ public class HangmanSwing implements HangmanView {
 	@Override
 	public String getFilePath() {
 		return null;
+	}
+
+	@Override
+	public void drawHangman(HangmanDrawing hangmanDrawing) {
+		throw new UnsupportedOperationException("Not implemented");
+	}
+
+	@Override
+	public void displayMessage(String helpMsg) {
+
+		throw new UnsupportedOperationException("Not implemented");
+	}
+
+	@Override
+	public void setState(HangmanClientState state) {
+
+		throw new UnsupportedOperationException("Not implemented");
+	}
+
+	@Override
+	public void showHelp(String helpMsg) {
+
+		throw new UnsupportedOperationException("Not implemented");
+	}
+
+	@Override
+	public void exit() {
+		System.exit(0);
 	}
 }

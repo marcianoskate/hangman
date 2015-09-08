@@ -1,5 +1,6 @@
 package co.cagiral.view.state;
 
+import co.cagiral.view.HangmanView;
 import co.cagiral.view.console.HangmanConsole;
 
 import java.util.Observer;
@@ -9,7 +10,7 @@ import java.util.Observer;
  */
 public abstract class HangmanClientState implements Observer {
 
-    protected final HangmanConsole context;
+    protected final HangmanView context;
 
     public HangmanClientState(HangmanConsole context) {
 

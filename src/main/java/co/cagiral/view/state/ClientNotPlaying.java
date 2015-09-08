@@ -33,7 +33,6 @@ public class ClientNotPlaying extends HangmanClientState {
     @Override
     public void onStart() {
 
-
         context.displayMessage(getStartMsg());
         context.setState(new ClientPlaying(this));
     }
