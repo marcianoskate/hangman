@@ -60,4 +60,43 @@ public class HangmanConsole implements HangmanView {
     public void displayMessage(String msg) {
         System.out.println(msg);
     }
+    
+//    /------------|
+//	 |            |
+//	 |          /~~~\
+//	 |          |x x|
+//	 |          \_~_/
+//	 |            |
+//	 |           /|\
+//	 |          / | \
+//	 |         /  |  \
+//	 |           / \
+//	 |          /   \
+//	 |        _/     \_
+//	 |
+//	===
+    public void drawHangman(int attemptsRemaining) {
+    	
+    	 drawStick();
+    }
+
+	private void drawStick() {
+
+		StringBuilder stick = new StringBuilder();
+		stick.append(" /------------|").append("\n")
+		     .append(" |            |").append("\n")
+		     .append(" |             ").append("\n")
+		     .append(" |             ").append("\n")
+		     .append(" |             ").append("\n")
+		     .append(" |             ").append("\n")
+		     .append(" |             ").append("\n")
+		     .append(" |             ").append("\n")
+		     .append(" |             ").append("\n")
+		     .append(" |             ").append("\n")
+		     .append(" |             ").append("\n")
+		     .append(" |             ").append("\n")
+		     .append(" |             ").append("\n")
+		     .append("===");
+		System.out.println(stick.toString());
+	}
 }

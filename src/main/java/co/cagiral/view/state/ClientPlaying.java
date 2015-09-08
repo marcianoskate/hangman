@@ -31,6 +31,7 @@ public class ClientPlaying extends HangmanClientState {
         context.displayMessage("secret word: " + secretWord);
         hangman = new HangmanImpl(secretWord, service);
         hangman.registerObserver(this);
+        context.drawHangman(hangman.getAttempts());
         context.showHelp(HELP_MSG);
     }
 
@@ -89,12 +90,15 @@ public class ClientPlaying extends HangmanClientState {
             context.displayMessage("---------------------");
         }
         if (o == hangman) {
+        	
             Hangman hangman = (Hangman) o;
 
+            context.drawHangman(hangman.getAttempts());
             if (hangman.hasWon()) {
                 context.displayMessage("******************");
                 context.displayMessage("**** YOU WON! ****");
                 context.displayMessage("******************");
+                context.displayMessage("The word was: " + hangman.getSecretWord());
                 context.setState(new ClientNotPlaying(this));
             }
             if (hangman.getAttempts() == 0) {
