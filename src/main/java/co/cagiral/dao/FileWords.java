@@ -3,10 +3,11 @@ package co.cagiral.dao;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-public class FileWords {
+public class FileWords implements WordDictionary {
 
 	public static final String FILE_PATH = "dictionary/words.txt";
 	Set<String> words = new HashSet<>();
@@ -42,5 +43,12 @@ public class FileWords {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public String getWord() {
+
+		int index = new Random().nextInt(words.size());
+		return (String) words.toArray()[index];
 	}
 }

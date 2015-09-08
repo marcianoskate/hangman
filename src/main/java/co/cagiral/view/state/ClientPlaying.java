@@ -1,6 +1,7 @@
 package co.cagiral.view.state;
 
 import co.cagiral.dao.ArrayWords;
+import co.cagiral.dao.FileWords;
 import co.cagiral.service.HangmanService;
 import co.cagiral.service.HangmanServiceImpl;
 import co.cagiral.view.HangmanProperties;
@@ -17,7 +18,7 @@ public class ClientPlaying extends HangmanClientState {
 
     public static final String HELP_MSG = "Guess a letter or a word; exit will end the game.";
 
-    private final HangmanService service = new HangmanServiceImpl(new ArrayWords());
+    private final HangmanService service = new HangmanServiceImpl(new FileWords());
     private Hangman hangman;
 
     public ClientPlaying(HangmanClientState prevState) {

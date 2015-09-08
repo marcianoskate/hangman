@@ -14,6 +14,15 @@ public class WordDictionaryTest {
 
         WordDictionary dictionary = new ArrayWords();
         String word = dictionary.getWord();
+        System.out.println(word);
+        assertNotNull(word);
+    }
+
+    @Test
+    public void file_words_return_word() {
+
+        WordDictionary dictionary = new FileWords();
+        String word = dictionary.getWord();
         System.out.print(word);
         assertNotNull(word);
     }
