@@ -1,7 +1,6 @@
 package co.cagiral.dao;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
@@ -9,11 +8,17 @@ import java.util.Set;
 
 public class FileWords implements WordDictionary {
 
-	public static final String FILE_PATH = "dictionary/words.txt";
+	private static final String DEFAULT_FILE_PATH = "dictionary/words.txt";
+	private static String filePath;
 	Set<String> words = new HashSet<>();
 
 	public FileWords() {
-		init(FILE_PATH);
+		this(DEFAULT_FILE_PATH);
+	}
+
+	public FileWords(String filePath) {
+		this.filePath = filePath;
+		init();
 	}
 
 	public Set<String> getWords() {
@@ -24,24 +29,34 @@ public class FileWords implements WordDictionary {
 		this.words = words;
 	}
 
-	private void init(String fileName) {
+	private void init() {
 
 		//Get file from resources folder
 		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource(fileName).getFile());
 
-		try (Scanner scanner = new Scanner(file)) {
-
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				words.add(line);
-			}
-
-			scanner.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (classLoader == null) {
+			classLoader = Class.class.getClassLoader();
 		}
+
+		InputStream stream = classLoader.getResourceAsStream(filePath);
+		if (stream == null) {
+
+			File file = new File(classLoader.getResource(filePath).getFile());
+			try {
+				stream = new FileInputStream(file);
+			} catch (FileNotFoundException e) {
+				throw new RuntimeException("the file couldn't be located");
+			}
+		}
+
+		Scanner scanner = new Scanner(stream);
+		while (scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			words.add(line);
+		}
+
+		scanner.close();
+
 
 	}
 
