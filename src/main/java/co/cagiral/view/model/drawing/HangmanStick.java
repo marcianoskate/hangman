@@ -10,12 +10,44 @@ import java.util.List;
  */
 public class HangmanStick extends HangmanBodyPart {
 
-    private List<HangmanBodyPart> bodyParts = new ArrayList<>();
+    private HangmanBodyPart head;
 
     @Override
-    public void add(HangmanBodyPart item) {
+    public void addHead(HangmanBodyPart hangmanHead) {
+        this.head = hangmanHead;
+    }
 
-        this.bodyParts.add(item);
+    @Override
+    public void addLeftEye(HangmanBodyPart eye) {
+        if (head == null) {
+            throw new RuntimeException("Can't add Left Eye without a Head");
+        }
+        head.addLeftEye(eye);
+    }
+
+    @Override
+    public void addRightEye(HangmanBodyPart eye) {
+        if (head == null) {
+            throw new RuntimeException("Can't add Right Eye without a Head");
+        }
+        head.addRightEye(eye);
+
+    }
+
+    @Override
+    public void addNose(HangmanBodyPart hangmanNose) {
+        if (head == null) {
+            throw new RuntimeException("Can't add Nose without a Head");
+        }
+        head.addNose(hangmanNose);
+    }
+
+    @Override
+    public void addMouth(HangmanMouth hangmanMouth) {
+        if (head == null) {
+            throw new RuntimeException("Can't add Nose without a Head");
+        }
+        head.addMouth(hangmanMouth);
     }
 
     @Override
@@ -23,11 +55,17 @@ public class HangmanStick extends HangmanBodyPart {
         StringBuilder stick = new StringBuilder();
         stick
                 .append(" /------------|").append("\n")
-                .append(" |            |").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
+                .append(" |            |").append("\n");
+        if (head != null) {
+            stick.append(head.draw());
+        } else {
+            stick.append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+            ;
+        }
+
+        stick.append(" |             ").append("\n")
                 .append(" |             ").append("\n")
                 .append(" |             ").append("\n")
                 .append(" |             ").append("\n")
@@ -37,6 +75,6 @@ public class HangmanStick extends HangmanBodyPart {
                 .append(" |             ").append("\n")
                 .append("===");
         System.out.println(stick.toString());
-        return null;
+        return stick.toString();
     }
 }

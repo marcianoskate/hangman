@@ -7,17 +7,45 @@ package co.cagiral.view.model.drawing;
  */
 public class HangmanDrawing {
 
-    private final HangmanBodyPart bodyParts;
+    private final HangmanBodyPart drawing;
 
     private HangmanDrawing(HangmanBodyPart bodyParts) {
-        this.bodyParts = bodyParts;
+        this.drawing = bodyParts;
+    }
+
+    public HangmanDrawing(Builder builder) {
+
+        this.drawing = builder.drawing;
     }
 
     public void draw() {
-        this.bodyParts.draw();
+        this.drawing.draw();
     }
 
     public static HangmanDrawing getHangmanDrawing(int attempts) {
         return new HangmanDrawing(new HangmanStick());
+    }
+
+    public static class Builder {
+
+        HangmanBodyPart drawing;
+
+        public Builder() {
+            drawing = new HangmanStick();
+        }
+
+        public Builder withHead() {
+            drawing.addHead(new HangmanHead());
+            return this;
+        }
+
+        public Builder withLeftEye() {
+            drawing.addLeftEye(new HangmanEye());
+            return this;
+        }
+
+        public HangmanDrawing build() {
+            return new HangmanDrawing(this);
+        }
     }
 }

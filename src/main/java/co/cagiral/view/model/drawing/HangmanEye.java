@@ -10,22 +10,8 @@ import java.util.List;
  */
 public class HangmanEye extends HangmanBodyPart {
 
-    private List<HangmanBodyPart> bodyParts = new ArrayList<>();
-
-    @Override
-    public void add(HangmanBodyPart item) {
-
-        this.bodyParts.add(item);
-    }
-
     @Override
     public String draw() {
-        StringBuilder stick = new StringBuilder();
-        stick
-                .append(" |          /~~~\\").append("\n")
-                .append(" |          |   |").append("\n")
-                .append(" |          \\___/").append("\n")
-                ;
-        return stick.toString();
+        return "x";
     }
 }

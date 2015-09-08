@@ -4,6 +4,7 @@ package co.cagiral.view.model.drawing;
 //	 |            |
 //	 |          /~~~\
 //	 |          |x x|
+//   |          | ! |
 //	 |          \_~_/
 //	 |            |
 //	 |           /|\
@@ -16,7 +17,8 @@ package co.cagiral.view.model.drawing;
 //	===
 
 /**
- * Abstract class that defines the body parts to be drawn as a Composite Pattern
+ * Abstract class that defines the functionality that body parts to be drawn have to meet in order to
+ * behave as the Composite Pattern
  */
 public abstract class HangmanBodyPart {
 
@@ -28,4 +30,28 @@ public abstract class HangmanBodyPart {
 		throw new UnsupportedOperationException("Not Implemented");
 	}
 
+	public void addHead(HangmanBodyPart hangmanHead) {
+
+		throw new UnsupportedOperationException("Not Implemented");
+	}
+
+	public void addLeftEye(HangmanBodyPart eye) {
+
+		throw new UnsupportedOperationException("Not Implemented");
+	}
+
+	public void addRightEye(HangmanBodyPart eye) {
+
+		throw new UnsupportedOperationException("Not Implemented");
+	}
+
+	public void addNose(HangmanBodyPart hangmanNose) {
+
+		throw new UnsupportedOperationException("Not Implemented");
+	}
+
+	public void addMouth(HangmanMouth hangmanMouth){
+
+		throw new UnsupportedOperationException("Not Implemented");
+	}
 }

@@ -9,6 +9,6 @@ public class HangmanNose extends HangmanBodyPart {
 
     @Override
     public String draw() {
-        return "x";
+        return "!";
     }
 }
