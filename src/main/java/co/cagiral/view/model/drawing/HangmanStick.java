@@ -1,8 +1,5 @@
 package co.cagiral.view.model.drawing;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Representation of the HangmanStick.
  *
@@ -62,6 +59,14 @@ public class HangmanStick extends HangmanBodyPart {
             throw new RuntimeException("Can't add an Arm without the Body");
         }
         body.addLeftArm(hangmanLeftArm);
+    }
+
+    @Override
+    public void addRightArm(HangmanBodyPart hangmanRightArm) {
+        if (body == null) {
+            throw new RuntimeException("Can't add an Arm without the Body");
+        }
+        body.addRightArm(hangmanRightArm);
     }
 
     @Override

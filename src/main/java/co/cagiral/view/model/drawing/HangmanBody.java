@@ -18,11 +18,18 @@ public class HangmanBody extends HangmanBodyPart {
     }
 
     @Override
+    public void addRightArm(HangmanBodyPart hangmanRightArm) {
+        this.rightArm = hangmanRightArm;
+    }
+
+    @Override
     public String draw() {
         StringBuilder stick = new StringBuilder();
 
         stick.append(" |            |").append("\n");
-        if (leftArm != null) {
+        if (rightArm != null) {
+            stick.append(rightArm.draw());
+        } else if (leftArm != null) {
             stick.append(leftArm.draw());
         } else {
 
@@ -48,11 +55,6 @@ public class HangmanBody extends HangmanBodyPart {
 //        System.out.println("|            |");
 //
 
-//
-//        //Right Arm
-//        System.out.println("|           /|\\");
-//        System.out.println("|          / |  \\");
-//        System.out.println("|         /  |   \\");
         return stick.toString();
     }
 
