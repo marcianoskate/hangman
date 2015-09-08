@@ -3,7 +3,7 @@ package co.cagiral.view.model.drawing;
 /**
  * Created by cpalacio on 9/8/2015.
  */
-public class hangmanRightArm extends HangmanBodyPart {
+public class HangmanRightArm extends HangmanBodyPart {
 
     //
 //        //Right Arm
