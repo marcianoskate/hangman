@@ -44,6 +44,12 @@ public class HangmanDrawing {
         if (attempts <= 5) {
             builder.withMouth();
         }
+        if (attempts <= 4) {
+            builder.withBody();
+        }
+        if (attempts <= 3) {
+            builder.withLeftArm();
+        }
         return builder.build();
     }
 
@@ -80,8 +86,18 @@ public class HangmanDrawing {
             return this;
         }
 
+        public Builder withBody() {
+            drawing.addBody(new HangmanBody());
+            return this;
+        }
+
         public HangmanDrawing build() {
             return new HangmanDrawing(this);
+        }
+
+        public Builder withLeftArm() {
+            drawing.addLeftArm(new HangmanLeftArm());
+            return this;
         }
     }
 }

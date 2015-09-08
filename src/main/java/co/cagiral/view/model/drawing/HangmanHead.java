@@ -31,7 +31,7 @@ public class HangmanHead extends HangmanBodyPart {
     }
 
     @Override
-    public void addMouth(HangmanMouth hangmanMouth) {
+    public void addMouth(HangmanBodyPart hangmanMouth) {
         this.mouth = hangmanMouth;
     }
 
