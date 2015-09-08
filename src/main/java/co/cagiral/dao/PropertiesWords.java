@@ -4,19 +4,30 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashSet;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.Set;
 
 public class PropertiesWords {
 
-	public static void main(String[] args) {
-		PropertiesWords prop = new PropertiesWords();
-		System.out.println(prop.getFile(""));
+	Set<String> words = new HashSet<>();
+
+	public Set<String> getWords() {
+		return words;
 	}
 
-	private String getFile(String fileName) {
+	public void setWords(Set<String> words) {
+		this.words = words;
+	}
 
-		StringBuilder result = new StringBuilder("");
+	public static void main(String[] args) {
+		PropertiesWords prop = new PropertiesWords();
+		prop.init("dictionary/words.txt");
+		System.out.println(prop.getWords());
+	}
+
+	private void init(String fileName) {
 
 		//Get file from resources folder
 		ClassLoader classLoader = getClass().getClassLoader();
@@ -26,7 +37,7 @@ public class PropertiesWords {
 
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
-				result.append(line).append("\n");
+				words.add(line);
 			}
 
 			scanner.close();
@@ -34,8 +45,6 @@ public class PropertiesWords {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return result.toString();
 
 	}
 }
