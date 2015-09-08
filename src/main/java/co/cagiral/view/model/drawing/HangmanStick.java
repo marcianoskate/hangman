@@ -112,8 +112,12 @@ public class HangmanStick extends HangmanBodyPart {
                     .append(" |             ").append("\n")
                     .append(" |             ").append("\n")
                     .append(" |             ").append("\n")
-                    .append("===");
+                    .append(" |             ").append("\n")
+                    ;
         }
+        stick.append(" |             ").append("\n")
+            .append(" |             ").append("\n")
+            .append("===");
         System.out.println(stick.toString());
         return stick.toString();
     }

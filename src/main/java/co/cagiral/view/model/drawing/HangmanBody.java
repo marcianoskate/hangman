@@ -62,11 +62,8 @@ public class HangmanBody extends HangmanBodyPart {
                     .append(" |             ").append("\n")
                     .append(" |             ").append("\n")
                     .append(" |             ").append("\n")
-                    .append("===")
             ;
         }
-        stick.append(" |             ").append("\n")
-                .append("==="); // Pedestal
 
         return stick.toString();
     }
