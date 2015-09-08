@@ -13,7 +13,7 @@ import co.cagiral.view.model.drawing.HangmanDrawing;
 import java.util.Observable;
 
 /**
- * Created by cpalacio on 9/3/2015.
+ * State that identifies an user playing the game. It holds all the state of the game's ui
  */
 public class ClientPlaying extends HangmanClientState {
 
@@ -34,7 +34,7 @@ public class ClientPlaying extends HangmanClientState {
             secretWord = service.getSecretWord();
         }
 
-        context.displayMessage("secret word: " + secretWord);
+//        context.displayMessage("secret word: " + secretWord);
         hangman = new HangmanImpl(secretWord, service);
         hangman.registerObserver(this);
         context.drawHangman(HangmanDrawing.getHangmanDrawing(hangman.getAttempts()));

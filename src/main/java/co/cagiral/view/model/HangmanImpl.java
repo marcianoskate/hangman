@@ -8,7 +8,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by cpalacio on 9/4/2015.
+ * Default implementation of the Hangman.
  */
 public class HangmanImpl extends Observable implements Hangman {
 

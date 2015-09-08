@@ -5,7 +5,8 @@ import co.cagiral.view.console.HangmanConsole;
 import java.util.Observable;
 
 /**
- * Created by cpalacio on 9/3/2015.
+ * State that indicates the player hasn't started to play, he's in the initial mode and
+ * the program is waiting for a command.
  */
 public class ClientNotPlaying extends HangmanClientState {
     public static final String HELP_MSG = "Commands: start, help, exit";

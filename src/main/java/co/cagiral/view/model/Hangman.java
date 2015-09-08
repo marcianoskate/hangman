@@ -3,7 +3,7 @@ package co.cagiral.view.model;
 import java.util.Observer;
 
 /**
- * Created by cpalacio on 9/4/2015.
+ * Interface that offers the methods that any implementation of Hangman must offer.
  */
 public interface Hangman {
 

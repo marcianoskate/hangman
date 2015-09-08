@@ -5,7 +5,7 @@ import co.cagiral.view.console.HangmanConsole;
 import java.util.Observer;
 
 /**
- * Created by cpalacio on 9/3/2015.
+ * Definition of methods that any state must provide to the Context
  */
 public abstract class HangmanClientState implements Observer {
 
