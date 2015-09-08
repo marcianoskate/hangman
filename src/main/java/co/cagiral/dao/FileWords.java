@@ -8,7 +8,12 @@ import java.util.Set;
 
 public class FileWords {
 
+	public static final String FILE_PATH = "dictionary/words.txt";
 	Set<String> words = new HashSet<>();
+
+	public FileWords() {
+		init(FILE_PATH);
+	}
 
 	public Set<String> getWords() {
 		return words;
@@ -16,12 +21,6 @@ public class FileWords {
 
 	public void setWords(Set<String> words) {
 		this.words = words;
-	}
-
-	public static void main(String[] args) {
-		FileWords prop = new FileWords();
-		prop.init("dictionary/words.txt");
-		System.out.println(prop.getWords());
 	}
 
 	private void init(String fileName) {
