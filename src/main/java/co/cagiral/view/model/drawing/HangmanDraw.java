@@ -1,4 +1,4 @@
-package co.cagiral.view.model;
+package co.cagiral.view.model.drawing;
 
 public interface HangmanDraw {
 	
