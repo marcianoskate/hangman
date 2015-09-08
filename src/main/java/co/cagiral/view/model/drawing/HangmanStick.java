@@ -11,6 +11,7 @@ import java.util.List;
 public class HangmanStick extends HangmanBodyPart {
 
     private HangmanBodyPart head;
+    private HangmanBodyPart body;
 
     @Override
     public void addHead(HangmanBodyPart hangmanHead) {
@@ -43,11 +44,24 @@ public class HangmanStick extends HangmanBodyPart {
     }
 
     @Override
-    public void addMouth(HangmanMouth hangmanMouth) {
+    public void addMouth(HangmanBodyPart hangmanMouth) {
         if (head == null) {
-            throw new RuntimeException("Can't add Nose without a Head");
+            throw new RuntimeException("Can't add Mouth without a Head");
         }
         head.addMouth(hangmanMouth);
+    }
+
+    @Override
+    public void addBody(HangmanBodyPart hangmanBody) {
+        this.body = hangmanBody;
+    }
+
+    @Override
+    public void addLeftArm(HangmanBodyPart hangmanLeftArm) {
+        if (body == null) {
+            throw new RuntimeException("Can't add an Arm without the Body");
+        }
+        body.addLeftArm(hangmanLeftArm);
     }
 
     @Override
@@ -65,15 +79,20 @@ public class HangmanStick extends HangmanBodyPart {
             ;
         }
 
-        stick.append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append("===");
+        if (body != null) {
+            stick.append(body.draw());
+        } else {
+
+            stick.append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append("===");
+        }
         System.out.println(stick.toString());
         return stick.toString();
     }

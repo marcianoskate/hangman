@@ -50,7 +50,17 @@ public abstract class HangmanBodyPart {
 		throw new UnsupportedOperationException("Not Implemented");
 	}
 
-	public void addMouth(HangmanMouth hangmanMouth){
+	public void addMouth(HangmanBodyPart hangmanMouth){
+
+		throw new UnsupportedOperationException("Not Implemented");
+	}
+
+	public void addBody(HangmanBodyPart hangmanBody) {
+
+		throw new UnsupportedOperationException("Not Implemented");
+	}
+
+	public void addLeftArm(HangmanBodyPart hangmanLeftArm) {
 
 		throw new UnsupportedOperationException("Not Implemented");
 	}
