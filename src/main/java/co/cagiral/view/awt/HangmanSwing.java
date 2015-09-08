@@ -28,4 +28,8 @@ public class HangmanSwing implements HangmanView {
         frame.setVisible(true);
 	}
 
+	@Override
+	public String getFilePath() {
+		return null;
+	}
 }

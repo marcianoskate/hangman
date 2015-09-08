@@ -13,8 +13,14 @@ import java.io.Console;
 public class HangmanConsole implements HangmanView {
 
     private HangmanClientState state;
-    
+    private final String filepath;
+
     public HangmanConsole() {
+
+        this(null);
+    }
+    
+    public HangmanConsole(String filepath) {
 
         state = new ClientNotPlaying(this);
         Console console = System.console();
@@ -63,8 +69,12 @@ public class HangmanConsole implements HangmanView {
     }
     
     public void drawHangman(HangmanDrawing hangmanDrawing) {
-    	
-    	 hangmanDrawing.draw();
+
+        hangmanDrawing.draw();
     }
 
+    @Override
+    public String getFilePath() {
+        return filepath;
+    }
 }

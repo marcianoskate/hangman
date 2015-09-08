@@ -1,6 +1,14 @@
 package co.cagiral.dao;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.MalformedInputException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,7 +25,8 @@ public class FileWords implements WordDictionary {
 	}
 
 	public FileWords(String filePath) {
-		this.filePath = filePath;
+		System.out.println("~~Starting Dictionary from file on path: " + filePath);
+		this.filePath = filePath == null ? DEFAULT_FILE_PATH : filePath;
 		init();
 	}
 
@@ -31,32 +40,39 @@ public class FileWords implements WordDictionary {
 
 	private void init() {
 
-		//Get file from resources folder
-		ClassLoader classLoader = getClass().getClassLoader();
+		System.out.println("Reading file on path " + filePath);
+		try {
+			URL classloaderPath = ClassLoader.getSystemResource(filePath);
 
-		if (classLoader == null) {
-			classLoader = Class.class.getClassLoader();
-		}
+			Path path;
+			if (classloaderPath != null) {
 
-		InputStream stream = classLoader.getResourceAsStream(filePath);
-		if (stream == null) {
+				path = Paths.get(classloaderPath.toURI());
+			} else {
 
-			File file = new File(classLoader.getResource(filePath).getFile());
-			try {
-				stream = new FileInputStream(file);
-			} catch (FileNotFoundException e) {
-				throw new RuntimeException("the file couldn't be located");
+				path = Paths.get(filePath);
 			}
+
+			Charset charset = StandardCharsets.UTF_8;
+
+			try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+
+				String line = null;
+				while ((line = reader.readLine()) != null) {
+					words.add(line);
+				}
+				reader.close();
+
+			} catch (IOException ioe) {
+				if (ioe instanceof MalformedInputException) {
+					throw new RuntimeException("The file is not encoded in " + charset);
+				}
+				throw new RuntimeException("Can't Open file on " + path);
+			}
+
+		} catch (URISyntaxException e) {
+			throw new RuntimeException("Can't find the file " + filePath);
 		}
-
-		Scanner scanner = new Scanner(stream);
-		while (scanner.hasNextLine()) {
-			String line = scanner.nextLine();
-			words.add(line);
-		}
-
-		scanner.close();
-
 
 	}
 

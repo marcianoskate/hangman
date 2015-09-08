@@ -13,7 +13,15 @@ public class HangmanGame {
 
     public static void main(String[] args) {
 
-    	HangmanViewFactory.console();
+        String filePath = null;
+        if (args != null) {
+
+            if (args.length > 0) {
+
+                filePath = args[0];
+            }
+        }
+        HangmanViewFactory.console(filePath);
 //        HangmanViewFactory.swing();
     }
 
