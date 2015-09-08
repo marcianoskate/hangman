@@ -69,4 +69,14 @@ public abstract class HangmanBodyPart {
 
 		throw new UnsupportedOperationException("Not Implemented");
 	}
+
+	public void addLeftLeg(HangmanBodyPart hangmanLeftLeg) {
+
+		throw new UnsupportedOperationException("Not Implemented");
+	}
+
+	public void addRightLeg(HangmanBodyPart hangmanRightLeg) {
+
+		throw new UnsupportedOperationException("Not Implemented");
+	}
 }

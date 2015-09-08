@@ -23,10 +23,20 @@ public class HangmanBody extends HangmanBodyPart {
     }
 
     @Override
+    public void addLeftLeg(HangmanBodyPart hangmanLeftLeg) {
+        this.leftLeg = hangmanLeftLeg;
+    }
+
+    @Override
+    public void addRightLeg(HangmanBodyPart hangmanRightLeg) {
+        this.rightLeg = hangmanRightLeg;
+    }
+
+    @Override
     public String draw() {
         StringBuilder stick = new StringBuilder();
 
-        stick.append(" |            |").append("\n");
+        stick.append(" |            |").append("\n"); //neck
         if (rightArm != null) {
             stick.append(rightArm.draw());
         } else if (leftArm != null) {
@@ -41,19 +51,22 @@ public class HangmanBody extends HangmanBodyPart {
             ;
         }
 
-        stick
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append(" |             ").append("\n")
-                .append("===")
-        ;
+        if (rightLeg != null) {
+            stick.append(rightLeg.draw());
+        } else if (leftLeg != null) {
+            stick.append(leftLeg.draw());
+        } else {
 
-        //Only Body
-//        System.out.println("|            |");
-//        System.out.println("|            |");
-//        System.out.println("|            |");
-//
+            stick
+                    .append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append(" |             ").append("\n")
+                    .append("===")
+            ;
+        }
+        stick.append(" |             ").append("\n")
+                .append("==="); // Pedestal
 
         return stick.toString();
     }

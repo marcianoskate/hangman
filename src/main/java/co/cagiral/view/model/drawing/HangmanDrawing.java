@@ -53,6 +53,12 @@ public class HangmanDrawing {
         if (attempts <= 2) {
             builder.withRightArm();
         }
+        if (attempts <= 1) {
+            builder.withLeftLeg();
+        }
+        if (attempts <= 0) {
+            builder.withRightLeg();
+        }
         return builder.build();
     }
 
@@ -100,7 +106,7 @@ public class HangmanDrawing {
         }
 
         public Builder withRightArm() {
-            drawing.addRightArm(new hangmanRightArm());
+            drawing.addRightArm(new HangmanRightArm());
             return this;
         }
 
@@ -108,5 +114,14 @@ public class HangmanDrawing {
             return new HangmanDrawing(this);
         }
 
+        public Builder withLeftLeg() {
+            drawing.addLeftLeg(new HangmanLeftLeg());
+            return this;
+        }
+
+        public Builder withRightLeg() {
+            drawing.addRightLeg(new HangmanRightLeg());
+            return this;
+        }
     }
 }

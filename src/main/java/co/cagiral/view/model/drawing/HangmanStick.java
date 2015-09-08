@@ -70,6 +70,22 @@ public class HangmanStick extends HangmanBodyPart {
     }
 
     @Override
+    public void addLeftLeg(HangmanBodyPart hangmanLeftLeg) {
+        if (body == null) {
+            throw new RuntimeException("Can't add an Arm without the Body");
+        }
+        body.addLeftLeg(hangmanLeftLeg);
+    }
+
+    @Override
+    public void addRightLeg(HangmanBodyPart hangmanRightLeg) {
+        if (body == null) {
+            throw new RuntimeException("Can't add an Arm without the Body");
+        }
+        body.addRightLeg(hangmanRightLeg);
+    }
+
+    @Override
     public String draw() {
         StringBuilder stick = new StringBuilder();
         stick
