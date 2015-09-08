@@ -5,7 +5,9 @@ package co.cagiral.dao;
  */
 public class Dictionoaries {
     public static WordDictionary getFileDictionary(String filePath) {
-        System.out.println("DICT FACTORY: creating File Words from " + filePath);
+        if (filePath == null) {
+            return new FileWords();
+        }
         return new FileWords(filePath);
     }
 }

@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by cpalacio on 9/2/2015.
+ * Tests the Dictionaries Functionality
  */
 public class WordDictionaryTest {
 
@@ -43,6 +43,16 @@ public class WordDictionaryTest {
     public void file_words_from_factory_return_word_using_external_file() {
 
         WordDictionary dictionary = Dictionoaries.getFileDictionary("C:\\workspace\\words.txt");
+        String word = dictionary.getWord();
+        System.out.println(word);
+        assertNotNull(word);
+        System.out.println("======");
+    }
+
+    @Test
+    public void file_words_from_without_path_should_return_word() {
+
+        WordDictionary dictionary = Dictionoaries.getFileDictionary(null);
         String word = dictionary.getWord();
         System.out.println(word);
         assertNotNull(word);

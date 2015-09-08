@@ -1,9 +1,6 @@
 package co.cagiral.dao;
 
 import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.MalformedInputException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,70 +13,104 @@ import java.util.Set;
 
 public class FileWords implements WordDictionary {
 
-	private static final String DEFAULT_FILE_PATH = "dictionary/words.txt";
-	private static String filePath;
-	Set<String> words = new HashSet<>();
+    private static final String DEFAULT_FILE_PATH = "dictionary/words.txt";
+    private static Path filePath;
+    private static InputStream inputStream;
 
-	public FileWords() {
-		this(DEFAULT_FILE_PATH);
-	}
+    Set<String> words = new HashSet<>();
 
-	public FileWords(String filePath) {
-		this.filePath = filePath == null ? DEFAULT_FILE_PATH : filePath;
-		System.out.println("~~Starting Dictionary from file on path: " + filePath);
-		init();
-	}
+    public FileWords() {
+        this(null);
+    }
 
-	public Set<String> getWords() {
-		return words;
-	}
+    public FileWords(String providedPath) {
 
-	public void setWords(Set<String> words) {
-		this.words = words;
-	}
 
-	private void init() {
+        String tempFilePath = providedPath == null ? DEFAULT_FILE_PATH : providedPath;
+        if (providedPath == null) {
+            inputStream = getStream(tempFilePath);
+            System.out.println("~~Starting Dictionary from file on path: " + inputStream);
+        } else {
+            filePath = Paths.get(providedPath);
+            System.out.println("~~Starting Dictionary from file on path: " + filePath);
+        }
+        init();
+    }
 
-		System.out.println("Reading file on path " + filePath);
-		try {
-			URL classloaderPath = ClassLoader.getSystemResource(filePath);
+    public Set<String> getWords() {
+        return words;
+    }
 
-			Path path;
-			if (classloaderPath != null) {
+    public void setWords(Set<String> words) {
+        this.words = words;
+    }
 
-				path = Paths.get(classloaderPath.toURI());
-			} else {
+    private void init() {
 
-				path = Paths.get(filePath);
-			}
+        System.out.println("Reading file on path " + filePath);
 
-			Charset charset = StandardCharsets.UTF_8;
+        if (filePath != null) {
 
-			try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+            readExternalFile();
+        } else if (inputStream != null) {
 
-				String line = null;
-				while ((line = reader.readLine()) != null) {
-					words.add(line);
-				}
-				reader.close();
+            readFromResources();
 
-			} catch (IOException ioe) {
-				if (ioe instanceof MalformedInputException) {
-					throw new RuntimeException("The file is not encoded in " + charset);
-				}
-				throw new RuntimeException("Can't Open file on " + path);
-			}
+        } else {
+            throw new RuntimeException("Something went wrong creating the file");
+        }
+    }
 
-		} catch (URISyntaxException e) {
-			throw new RuntimeException("Can't find the file " + filePath);
-		}
+    private void readFromResources() {
+        Scanner scanner = new Scanner(inputStream);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            words.add(line);
+        }
+    }
 
-	}
+    private void readExternalFile() {
+        try (BufferedReader reader = Files.newBufferedReader(filePath, StandardCharsets.UTF_8)) {
 
-	@Override
-	public String getWord() {
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                words.add(line);
+            }
+            reader.close();
 
-		int index = new Random().nextInt(words.size());
-		return (String) words.toArray()[index];
-	}
+        } catch (IOException ioe) {
+            if (ioe instanceof MalformedInputException) {
+                throw new RuntimeException("The file is not encoded in " + StandardCharsets.UTF_8);
+            }
+            throw new RuntimeException("Can't Open file on " + filePath);
+        }
+    }
+
+    private InputStream getStream(String filepath) {
+
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        if (classLoader == null) {
+            classLoader = Class.class.getClassLoader();
+        }
+
+        InputStream stream = classLoader.getResourceAsStream(filepath);
+        if (stream == null) {
+
+            File file = new File(classLoader.getResource(filepath).getFile());
+            try {
+                stream = new FileInputStream(file);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException("the file couldn't be located");
+            }
+        }
+        return stream;
+    }
+
+    @Override
+    public String getWord() {
+
+        int index = new Random().nextInt(words.size());
+        return (String) words.toArray()[index];
+    }
 }
