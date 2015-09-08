@@ -25,8 +25,8 @@ public class FileWords implements WordDictionary {
 	}
 
 	public FileWords(String filePath) {
-		System.out.println("~~Starting Dictionary from file on path: " + filePath);
 		this.filePath = filePath == null ? DEFAULT_FILE_PATH : filePath;
+		System.out.println("~~Starting Dictionary from file on path: " + filePath);
 		init();
 	}
 

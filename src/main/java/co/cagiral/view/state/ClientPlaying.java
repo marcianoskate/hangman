@@ -25,6 +25,7 @@ public class ClientPlaying extends HangmanClientState {
     public ClientPlaying(HangmanClientState prevState) {
         super(prevState);
 
+        System.out.println("Context has the following path: " + context.getFilePath());
         service = new HangmanServiceImpl(Dictionoaries.getFileDictionary(context.getFilePath()));
 
         String secretWord = null;

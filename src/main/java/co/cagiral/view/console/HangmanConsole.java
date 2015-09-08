@@ -22,6 +22,8 @@ public class HangmanConsole implements HangmanView {
     
     public HangmanConsole(String filepath) {
 
+        this.filepath = filepath;
+
         state = new ClientNotPlaying(this);
         Console console = System.console();
 
