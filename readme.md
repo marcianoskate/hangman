@@ -3,16 +3,22 @@ Hangman game
 
 What is it?
 ----
-this is the implementation of the Hangman name as specified on the Expedia's recruitment test.
+this is the implementation of the Hangman game.
 
 How to Run it
 ----
-XXXX 
+java -jar .\target\hangman.jar [filePath]
 
 Documentation
 ----
-Command
+Commands:
+* While not playing:
+** start: Starts a game
+** help: Displays the command list
+** exit: Ends the application
 
+* While playing:
+** exit: finishes the game and resets the state
 
 Additional Documentation
 ---- 
