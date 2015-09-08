@@ -39,7 +39,7 @@ public class HangmanHead extends HangmanBodyPart {
     public String draw() {
         StringBuilder stick = new StringBuilder();
         stick
-                .append(" |          /¯¯¯\\").append("\n")
+                .append(" |          /~~~\\").append("\n")
                 .append(" |          |").append(eye(leftEye)).append(" ").append(eye(rightEye)).append("|").append("\n")
                 .append(" |          | ").append(aNose(this.nose)).append(" |").append("\n")
                 .append(" |          \\_").append(aMouth(this.mouth)).append("_/").append("\n")

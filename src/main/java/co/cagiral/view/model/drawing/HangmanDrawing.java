@@ -23,7 +23,28 @@ public class HangmanDrawing {
     }
 
     public static HangmanDrawing getHangmanDrawing(int attempts) {
-        return new HangmanDrawing(new HangmanStick());
+        Builder builder = new Builder();
+
+        if (attempts > 10 || attempts < 0) {
+            throw new RuntimeException("The number of attempts must be between 0 and 10");
+        }
+
+        if (attempts <= 9) {
+            builder.withHead();
+        }
+        if (attempts <= 8) {
+            builder.withLeftEye();
+        }
+        if (attempts <= 7) {
+            builder.withRightEye();
+        }
+        if (attempts <= 6) {
+            builder.withNose();
+        }
+        if (attempts <= 5) {
+            builder.withMouth();
+        }
+        return builder.build();
     }
 
     public static class Builder {
@@ -41,6 +62,21 @@ public class HangmanDrawing {
 
         public Builder withLeftEye() {
             drawing.addLeftEye(new HangmanEye());
+            return this;
+        }
+
+        public Builder withRightEye() {
+            drawing.addRightEye(new HangmanEye());
+            return this;
+        }
+
+        public Builder withNose() {
+            drawing.addNose(new HangmanNose());
+            return this;
+        }
+
+        public Builder withMouth() {
+            drawing.addMouth(new HangmanMouth());
             return this;
         }
 
