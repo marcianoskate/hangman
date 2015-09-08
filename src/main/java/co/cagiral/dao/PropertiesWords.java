@@ -1,39 +1,41 @@
 package co.cagiral.dao;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
+import java.util.Scanner;
 
 public class PropertiesWords {
 
-	public void method() {
-		Properties prop = new Properties();
-		OutputStream output = null;
+	public static void main(String[] args) {
+		PropertiesWords prop = new PropertiesWords();
+		System.out.println(prop.getFile(""));
+	}
 
-		try {
+	private String getFile(String fileName) {
 
-			output = new FileOutputStream("config.properties");
+		StringBuilder result = new StringBuilder("");
 
-			// set the properties value
-			prop.setProperty("database", "localhost");
-			prop.setProperty("dbuser", "mkyong");
-			prop.setProperty("dbpassword", "password");
+		//Get file from resources folder
+		ClassLoader classLoader = getClass().getClassLoader();
+		File file = new File(classLoader.getResource(fileName).getFile());
 
-			// save properties to project root folder
-			prop.store(output, null);
+		try (Scanner scanner = new Scanner(file)) {
 
-		} catch (IOException io) {
-			io.printStackTrace();
-		} finally {
-			if (output != null) {
-				try {
-					output.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				result.append(line).append("\n");
 			}
 
+			scanner.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+
+		return result.toString();
+
 	}
 }
