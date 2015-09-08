@@ -47,7 +47,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>co.cagiral.main.HangmanMain</mainClass>
+                            <mainClass>co.cagiral.main.HangmanGame</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
