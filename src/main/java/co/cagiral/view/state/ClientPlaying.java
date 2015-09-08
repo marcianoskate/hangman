@@ -6,6 +6,7 @@ import co.cagiral.service.HangmanServiceImpl;
 import co.cagiral.view.HangmanProperties;
 import co.cagiral.view.model.Hangman;
 import co.cagiral.view.model.HangmanImpl;
+import co.cagiral.view.model.drawing.HangmanDrawing;
 
 import java.util.Observable;
 
@@ -31,7 +32,7 @@ public class ClientPlaying extends HangmanClientState {
         context.displayMessage("secret word: " + secretWord);
         hangman = new HangmanImpl(secretWord, service);
         hangman.registerObserver(this);
-        context.drawHangman(hangman.getAttempts());
+        context.drawHangman(HangmanDrawing.getHangmanDrawing(hangman.getAttempts()));
         context.showHelp(HELP_MSG);
     }
 
@@ -93,7 +94,7 @@ public class ClientPlaying extends HangmanClientState {
         	
             Hangman hangman = (Hangman) o;
 
-            context.drawHangman(hangman.getAttempts());
+            context.drawHangman(HangmanDrawing.getHangmanDrawing(hangman.getAttempts()));
             if (hangman.hasWon()) {
                 context.displayMessage("******************");
                 context.displayMessage("**** YOU WON! ****");

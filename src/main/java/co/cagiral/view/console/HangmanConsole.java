@@ -1,5 +1,6 @@
 package co.cagiral.view.console;
 
+import co.cagiral.view.model.drawing.HangmanDrawing;
 import co.cagiral.view.state.ClientNotPlaying;
 import co.cagiral.view.state.HangmanClientState;
 import co.cagiral.view.HangmanView;
@@ -61,42 +62,9 @@ public class HangmanConsole implements HangmanView {
         System.out.println(msg);
     }
     
-//    /------------|
-//	 |            |
-//	 |          /~~~\
-//	 |          |x x|
-//	 |          \_~_/
-//	 |            |
-//	 |           /|\
-//	 |          / | \
-//	 |         /  |  \
-//	 |           / \
-//	 |          /   \
-//	 |        _/     \_
-//	 |
-//	===
-    public void drawHangman(int attemptsRemaining) {
+    public void drawHangman(HangmanDrawing hangmanDrawing) {
     	
-    	 drawStick();
+    	 hangmanDrawing.draw();
     }
 
-	private void drawStick() {
-
-		StringBuilder stick = new StringBuilder();
-		stick.append(" /------------|").append("\n")
-		     .append(" |            |").append("\n")
-		     .append(" |             ").append("\n")
-		     .append(" |             ").append("\n")
-		     .append(" |             ").append("\n")
-		     .append(" |             ").append("\n")
-		     .append(" |             ").append("\n")
-		     .append(" |             ").append("\n")
-		     .append(" |             ").append("\n")
-		     .append(" |             ").append("\n")
-		     .append(" |             ").append("\n")
-		     .append(" |             ").append("\n")
-		     .append(" |             ").append("\n")
-		     .append("===");
-		System.out.println(stick.toString());
-	}
 }
