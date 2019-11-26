@@ -13,12 +13,12 @@ Documentation
 ----
 Commands:
 * While not playing:
-** start: Starts a game
-** help: Displays the command list
-** exit: Ends the application
+    * start: Starts a game
+    * help: Displays the command list
+    * exit: Ends the application
 
 * While playing:
-** exit: finishes the game and resets the state
+    * exit: finishes the game and resets the state
 
 Additional Documentation
 ---- 
